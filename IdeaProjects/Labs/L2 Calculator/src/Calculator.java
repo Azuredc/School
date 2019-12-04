@@ -26,6 +26,8 @@ public class Calculator {
 
         userInput = scnr.nextInt();
 
+
+        //If-else statements for the different options
         if (userInput == 1){
             System.out.print("The result of the operation is " + (firstOperand + secondOperand) + ". Goodbye!");
         }
