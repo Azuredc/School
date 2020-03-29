@@ -329,27 +329,27 @@ bool imageComparison(vector<Pixel>& originalImage, vector<Pixel>& replicaImage, 
 	return sameImage;
 }
 
-void Testing(string exampleFile, vector<Pixel>& finalImage, int &testPassed, int &taskNum, Header Info) {
+void Testing(string exampleFile, vector<Pixel>& finalImage, int &testPassed,  Header Info) {
 	vector<Pixel> originalImage;
 	SaveImageData(exampleFile, Info, originalImage);
 
+	exampleFile = exampleFile.substr(16);
+
 	if (imageComparison(originalImage, finalImage, Info)) {
-		cout << "Test #" << taskNum << " ..... Passed!" << endl;
+		cout << exampleFile << " ..... Passed!" << endl;
 		testPassed++;
 	}
 	else {
-		cout << "Test #" << taskNum << " ..... Failed!" << endl;
+		cout << exampleFile << " ..... Failed!" << endl;
 	}
 }
 
 int main() {
 
 	int testPassed = 0;
-	int taskNum = 0;
 
 	//----- Task 1 -----//
 
-	taskNum++;
 	string inputFile1 = "input/layer1.tga";
 	string inputFile2 = "input/pattern1.tga";
 
@@ -362,7 +362,7 @@ int main() {
 
 	vector<Pixel> finalImage = Multiply(pixelImage1, pixelImage2, Info);
 
-	Testing("examples/EXAMPLE_part1.tga", finalImage, testPassed, taskNum, Info);
+	Testing("examples/EXAMPLE_part1.tga", finalImage, testPassed, Info);
 
 	string outputFile = "output/part1.tga";
 	WriteImage(outputFile, Info, finalImage);
@@ -370,7 +370,6 @@ int main() {
 
 	//----- Task 2 -----//
 
-	taskNum++;
 	inputFile1 = "input/layer2.tga";
 	inputFile2 = "input/car.tga";
 	SaveImageData(inputFile1, Info, pixelImage1);
@@ -378,7 +377,7 @@ int main() {
 
 	finalImage = Subtract(pixelImage1, pixelImage2, Info);
 
-	Testing("examples/EXAMPLE_part2.tga", finalImage, testPassed, taskNum, Info);
+	Testing("examples/EXAMPLE_part2.tga", finalImage, testPassed, Info);
 
 	outputFile = "output/part2.tga";
 	WriteImage(outputFile, Info, finalImage);
@@ -399,7 +398,7 @@ int main() {
 	
 	finalImage = Screen(finalImage, pixelImage1, Info);
 
-	Testing("examples/EXAMPLE_part3.tga", finalImage, testPassed, taskNum, Info);
+	Testing("examples/EXAMPLE_part3.tga", finalImage, testPassed, Info);
 
 	outputFile = "output/part3.tga";
 	WriteImage(outputFile, Info, finalImage);
@@ -422,7 +421,7 @@ int main() {
 	finalImage = Subtract(pixelImage1, finalImage, Info);
 	pixelImage1.clear();
 
-	Testing("examples/EXAMPLE_part4.tga", finalImage, testPassed, taskNum, Info);
+	Testing("examples/EXAMPLE_part4.tga", finalImage, testPassed, Info);
 
 	outputFile = "output/part4.tga";
 	WriteImage(outputFile, Info, finalImage);
@@ -437,7 +436,7 @@ int main() {
 	
 	finalImage = Overlay(pixelImage1, pixelImage2, Info);
 
-	Testing("examples/EXAMPLE_part5.tga", finalImage, testPassed, taskNum, Info);
+	Testing("examples/EXAMPLE_part5.tga", finalImage, testPassed, Info);
 
 	outputFile = "output/part5.tga";
 	WriteImage(outputFile, Info, finalImage);
@@ -457,7 +456,7 @@ int main() {
 		}
 	}
 
-	Testing("examples/EXAMPLE_part6.tga", pixelImage1, testPassed, taskNum, Info);
+	Testing("examples/EXAMPLE_part6.tga", pixelImage1, testPassed, Info);
 
 	outputFile = "output/part6.tga";
 	WriteImage(outputFile, Info, pixelImage1); 
@@ -471,7 +470,7 @@ int main() {
 	Scale(pixelImage1, "red", 4, Info);
 	Scale(pixelImage1, "blue", 0, Info);
 
-	Testing("examples/EXAMPLE_part7.tga", pixelImage1, testPassed, taskNum, Info);
+	Testing("examples/EXAMPLE_part7.tga", pixelImage1, testPassed, Info);
 
 	outputFile = "output/part7.tga";
 	WriteImage(outputFile, Info, pixelImage1);
@@ -479,53 +478,27 @@ int main() {
 
 	//----- Task 8 -----//	
 
-	inputFile1 = "input/car.tga";
+	//inputFile1 = "input/car.tga";
 
-	SaveImageData(inputFile1, Info, pixelImage1);
+	//SaveImageData(inputFile1, Info, pixelImage1);
 
-	channelSeparation(pixelImage1, Info, "output/part8_r.tga", "output/part8_g.tga", "output/part8_b.tga");
+	//channelSeparation(pixelImage1, Info, "output/part8_r.tga", "output/part8_g.tga", "output/part8_b.tga");
 
-	exampleFile = "examples/EXAMPLE_part8_r.tga";
-	SaveImageData(exampleFile, Info, originalImage);
-	inputFile1 = "output/part8_r.tga";
-	SaveImageData(exampleFile, Info, pixelImage1);
 
-	if (imageComparison(originalImage, pixelImage1, Info)) {
-		cout << "Test #8..... Passed!" << endl;
-		testPassed++;
-	}
-	else {
-		cout << "Test #8..... Failed!" << endl;
-	}
-	pixelImage1.clear();
+	//inputFile1 = "output/part8_r.tga";
+	//SaveImageData(inputFile1, Info, pixelImage1);
+	//Testing("examples/EXAMPLE_part8_r.tga.tga", pixelImage1, testPassed, Info);
+	//pixelImage1.clear();
 
-	exampleFile = "examples/EXAMPLE_part8_g.tga";
-	SaveImageData(exampleFile, Info, originalImage);
-	inputFile1 = "output/part8_g.tga";
-	SaveImageData(exampleFile, Info, pixelImage1);
+	//inputFile1 = "output/part8_g.tga";
+	//SaveImageData(inputFile1, Info, pixelImage1);
+	//Testing("examples/EXAMPLE_part8_g.tga.tga", pixelImage1, testPassed, Info);
+	//pixelImage1.clear();
 
-	if (imageComparison(originalImage, pixelImage1, Info)) {
-		cout << "Test #9..... Passed!" << endl;
-		testPassed++;
-	}
-	else {
-		cout << "Test #9..... Failed!" << endl;
-	}
-	pixelImage1.clear();
-
-	exampleFile = "examples/EXAMPLE_part8_b.tga";
-	SaveImageData(exampleFile, Info, originalImage);
-	inputFile1 = "output/part8_b.tga";
-	SaveImageData(exampleFile, Info, pixelImage1);
-
-	if (imageComparison(originalImage, pixelImage1, Info)) {
-		cout << "Test #10..... Passed!" << endl;
-		testPassed++;
-	}
-	else {
-		cout << "Test #10..... Failed!" << endl;
-	}
-	pixelImage1.clear();
+	//inputFile1 = "output/part8_b.tga";
+	//SaveImageData(inputFile1, Info, pixelImage1);
+	//Testing("examples/EXAMPLE_part8_b.tga.tga", pixelImage1, testPassed, Info);
+	//pixelImage1.clear();
 
 
 	//----- Task 9 -----//	
@@ -542,7 +515,7 @@ int main() {
 
 	finalImage = channelCombination(pixelImage1, pixelImage2, pixelImage3, Info);
 
-	Testing("examples/EXAMPLE_part9.tga", finalImage, testPassed, taskNum, Info);
+	Testing("examples/EXAMPLE_part9.tga", finalImage, testPassed, Info);
 
 	outputFile = "output/part9.tga";
 	WriteImage(outputFile, Info, finalImage);
@@ -555,7 +528,7 @@ int main() {
 
 	finalImage = reverseImage(pixelImage1, Info);
 
-	Testing("examples/EXAMPLE_part10.tga", finalImage, testPassed, taskNum, Info);
+	Testing("examples/EXAMPLE_part10.tga", finalImage, testPassed, Info);
 
 	outputFile = "output/part10.tga";
 	WriteImage(outputFile, Info, finalImage);
