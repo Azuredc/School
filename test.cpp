@@ -122,7 +122,6 @@ vector<Pixel> Multiply(vector<Pixel>& topImage, vector<Pixel>& botImage, Header 
 
 		combinedImage.push_back(tempPixel);
 	}
-
 	topImage.clear();
 	botImage.clear();
 
@@ -241,7 +240,7 @@ void Scale(vector<Pixel>& imageEdit, string color, int scale, Header Info) {
 	}
 }
 
-void channelSeparation(vector<Pixel>& pixelImage, Header Info, string redFile, string greenFile, string blueFile) {
+vector<Pixel> channelSeparation(vector<Pixel>& pixelImage, Header Info, string redFile, string greenFile, string blueFile) {
 	Pixel tempPixel;
 	vector<Pixel> red;
 	vector<Pixel> green;
@@ -263,7 +262,6 @@ void channelSeparation(vector<Pixel>& pixelImage, Header Info, string redFile, s
 		tempPixel.Blue = pixelImage[i].Red;
 		red.push_back(tempPixel);
 	}
-
 	pixelImage.clear();
 
 	WriteImage(redFile, Info, red);
@@ -478,27 +476,26 @@ int main() {
 
 	//----- Task 8 -----//	
 
-	//inputFile1 = "input/car.tga";
+	inputFile1 = "input/car.tga";
 
-	//SaveImageData(inputFile1, Info, pixelImage1);
+	SaveImageData(inputFile1, Info, pixelImage1);
 
-	//channelSeparation(pixelImage1, Info, "output/part8_r.tga", "output/part8_g.tga", "output/part8_b.tga");
+	channelSeparation(pixelImage1, Info, "output/part8_r.tga", "output/part8_g.tga", "output/part8_b.tga");
 
+	inputFile1 = "output/part8_r.tga";
+	SaveImageData(inputFile1, Info, pixelImage1);
+	Testing("examples/EXAMPLE_part8_r.tga.tga", pixelImage1, testPassed, Info);
+	pixelImage1.clear();
 
-	//inputFile1 = "output/part8_r.tga";
-	//SaveImageData(inputFile1, Info, pixelImage1);
-	//Testing("examples/EXAMPLE_part8_r.tga.tga", pixelImage1, testPassed, Info);
-	//pixelImage1.clear();
+	inputFile1 = "output/part8_g.tga";
+	SaveImageData(inputFile1, Info, pixelImage1);
+	Testing("examples/EXAMPLE_part8_g.tga.tga", pixelImage1, testPassed, Info);
+	pixelImage1.clear();
 
-	//inputFile1 = "output/part8_g.tga";
-	//SaveImageData(inputFile1, Info, pixelImage1);
-	//Testing("examples/EXAMPLE_part8_g.tga.tga", pixelImage1, testPassed, Info);
-	//pixelImage1.clear();
-
-	//inputFile1 = "output/part8_b.tga";
-	//SaveImageData(inputFile1, Info, pixelImage1);
-	//Testing("examples/EXAMPLE_part8_b.tga.tga", pixelImage1, testPassed, Info);
-	//pixelImage1.clear();
+	inputFile1 = "output/part8_b.tga";
+	SaveImageData(inputFile1, Info, pixelImage1);
+	Testing("examples/EXAMPLE_part8_b.tga.tga", pixelImage1, testPassed, Info);
+	pixelImage1.clear();
 
 
 	//----- Task 9 -----//	
